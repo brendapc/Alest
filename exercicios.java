@@ -6,7 +6,7 @@ class exercicios {
 
         int v[] = { 5, 2, 4, 6, 1, 3 };
         // instancia.geraVetor(100000, 100000)
-        /* int[] ordenado = */ instancia.testQuicksort(instancia.geraVetor(100000, 100000), 0, 100000);
+        /* int[] ordenado = */ instancia.testQuicksort(instancia.geraVetor(100, 100), 0, 100000);
 
         /*
          * for (int i = 0; i < ordenado.length; i++) {
@@ -184,15 +184,15 @@ class exercicios {
         initClock();
         int iteracoesQuick = instancia.quicksort(v, 1, 5);
 
-            
-            System.out.println("QuickSort ");
-            System.out.println("tamanho do vetor: " + v.length);
-            System.out.println("iteracoes: " + iteracoesQuick);
-            System.out.println("tempo: " + getClockSec());
-    
+        System.out.println("QuickSort ");
+        System.out.println("tamanho do vetor: " + v.length);
+        System.out.println("iteracoes: " + iteracoesQuick);
+        System.out.println("tempo: " + getClockSec());
+
     }
 
     int iteracoesQuicksort = 0;
+
     int quicksort(int[] v, int low, int high) {
         iteracoesQuicksort++;
         int pivot;
@@ -205,22 +205,25 @@ class exercicios {
 
         return iteracoesQuicksort;
     }
-    
+
     int partition(int[] v, int low, int high) {
         iteracoesQuicksort++;
         int i, p, firsthigh;
         firsthigh = low;
         p = high;
         for (i = low; i < high; i++)
+        iteracoesQuicksort++;
         if (v[i] < v[p]) {
-            swap(v, i, firsthigh);
-            firsthigh = firsthigh + 1;
-        }
+                iteracoesQuicksort++;
+                swap(v, i, firsthigh);
+                firsthigh = firsthigh + 1;
+            }
         swap(v, p, firsthigh);
         return firsthigh;
     }
-    
-    static void swap(int[] v, int p, int firsthigh) {
+
+    void swap(int[] v, int p, int firsthigh) {
+        iteracoesQuicksort++;
         int aux = v[p];
         v[p] = firsthigh;
         firsthigh = aux;
