@@ -41,7 +41,7 @@ public class ListaEncadeada {
     }
 
     public String retirarFim() {
-        if(inicio == null){
+        if (inicio == null) {
             return null;
         }
         No local = inicio;
@@ -69,7 +69,43 @@ public class ListaEncadeada {
         }
         return str;
     }
-    
+
+    public void inserirIndice(int indice, String info) {
+        if (indice <= 0) {
+            inserirInicio(info);
+        } else if (indice >= tamanho) {
+            inserirFim(info);
+        } else {
+            No local = inicio;
+            for (int i = 0; i < indice - 1; i++) {
+                local = local.proximo;
+            }
+            No no = new No();
+            no.info = info;
+            no.proximo = local.proximo;
+            local.proximo = no;
+            tamanho++;
+        }
+    }
+
+    public String retirarPorIndice(int indice) {
+        if (indice < 0 || indice >= tamanho) {
+            return null;
+        } else if (indice == 0) {
+            return retirarInicio();
+        } else if (indice == tamanho - 1) {
+            return retirarFim();
+        }
+        No local = inicio;
+        for (int i = 0; i < indice - 1; i++) {
+            local = local.proximo;
+        }
+        String info = local.proximo.info;
+        local.proximo = local.proximo.proximo;
+        tamanho--;
+        return info;
+    }
+
     public static void main(String[] args) {
         ListaEncadeada l = new ListaEncadeada();
         System.out.println(l);
@@ -78,7 +114,9 @@ public class ListaEncadeada {
         l.inserirFim(("b"));
         l.inserirFim(("c"));
         System.out.println(l);
-        l.retirarFim();
+        l.inserirIndice(2, "k");
+        System.out.println(l);
+        l.retirarPorIndice(1);
         System.out.println(l);
     }
 }
