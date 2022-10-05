@@ -136,7 +136,15 @@ public interface ListTAD<E> {
 	 * Retorna uma representação textual do conteúdo da lista.
 	 * @return Um String com o conteúdo da lista. 
 	 */		
-	public String toString();
+	public String toString(){
+		String str = "(" + tamanho + ") ";
+        No local = inicio;
+        while (local != null) {
+            str += local.info + " ";
+            local = local.proximo;
+        }
+        return str;
+	}
 
 	
 	/**********
@@ -164,14 +172,39 @@ public interface ListTAD<E> {
 	 * Remove o elemento armazenado na primeira posição da lista.
 	 * @return Elemento removido da lista.
 	 */
-	public E removeFirst();
+	public E removeFirst(){
+		 if (inicio == null) {
+            return null;
+        }
+        String info = inicio.info;
+        inicio = inicio.proximo;
+        tamanho--;
+        return info;
+	}
 
 	
 	/********
 	 * Remove o elemento armazenado na última posição da lista.
 	 * @return Elemento removido da lista.
 	 */
-	public E removeLast();
+	public E removeLast(){
+		if (inicio == null) {
+            return null;
+        }
+        No local = inicio;
+        while (local.proximo != null) {
+            No aux = local;
+            local = local.proximo;
+            if (local.proximo == null) {
+                aux.proximo = null;
+                tamanho--;
+                return local.info;
+            }
+        }
+        inicio = null;
+        tamanho--;
+        return local.info;
+	}
 
 	
 	/********
