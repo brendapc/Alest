@@ -12,10 +12,12 @@ public interface ListTAD<E> {
 	 * @param element Elemento a ser adicionado. 
 	 * @return true se a operação funcionou, false caso contrário.
 	 */
-	public void add(E element){
+	public boolean add(E element){
         if (inicio == null) {
             element.proximo = null;
             inicio = element;
+        	tamanho++;
+			return true
         } else {
             No local = inicio;
             while (local.proximo != null) {
@@ -23,8 +25,10 @@ public interface ListTAD<E> {
             }
             local.proximo = element;
             element.proximo = null;
+        	tamanho++;
+			return true
         }
-        tamanho++;
+		return false
 	}
 	
 	
